@@ -2,15 +2,11 @@ import { fb } from 'service';
 import { useState } from 'react';
 import { ErrorMessage, Form, Formik, Field } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { FormField } from 'components/FormField/FormField';
 import * as Yup from 'yup';
 
 export const Login = () => {
   const history = useHistory();
   const [serverError, setServerError] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [active, setActive] = useState(false);
   const [btnState, setBtnState] = useState('button');
   const defaultValues = {

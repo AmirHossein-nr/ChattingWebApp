@@ -9,10 +9,6 @@ import * as Yup from "yup";
 export const Signup = () => {
   const history = useHistory();
   const [serverError, setServerError] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
   const [active, setActive] = useState(false);
   const [btnState,setBtnState] = useState("button");
   const defaultValues = {
