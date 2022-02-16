@@ -9,16 +9,22 @@ export const Login = () => {
   const [serverError, setServerError] = useState('');
   const [active, setActive] = useState(false);
   const [btnState, setBtnState] = useState('button');
+  const [visible, setVisible] = useState(false);
   const defaultValues = {
     email: '',
     password: '',
   };
-   const validationSchema = Yup.object().shape({
+  const validationSchema = Yup.object().shape({
     email: Yup.string().required('Required'),
     password: Yup.string().required('Required'),
   });
 
-  const login =  ({email,password}, { setSubmitting }) => {
+  const login = ({ email, password }, { setSubmitting }) => {
+    setServerError('logging...');
+    setVisible(true);
+    setTimeout(() => {
+      setVisible(false);
+    }, 4000);
     fb.auth
       .signInWithEmailAndPassword(email, password)
       .then(res => {
@@ -56,6 +62,21 @@ export const Login = () => {
   return (
     <div className={'wrapper'}>
       <div className={'form'}>
+        {
+          visible ?
+            (<div className='centerd'>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+              <div className='wave'></div>
+            </div>) : null
+        }
         {!!serverError && <h2 className='error'>{serverError}</h2>}
         <h1 className={'title'}>Web Chat Application</h1>
         <Formik
@@ -97,42 +118,4 @@ export const Login = () => {
       </div>
     </div>
   );
-
-
-  // return (
-  //   <div className="wrapper">
-  //     <div className={"form"}>
-  //     <h1>Login</h1>
-  //     <Formik
-  //       onSubmit={login}
-  //       validateOnMount={true}
-  //       initialValues={defaultValues}
-  //       validationSchema={validationSchema}
-  //     >
-  //       {({ isValid, isSubmitting }) => (
-  //         <Form>
-  //           <FormField name="email" label="Email" type="email" />
-  //           <FormField name="password" label="Password" type="password" />
-  //
-  //           <div className="auth-link-container">
-  //             Don't have an account?{' '}
-  //             <span
-  //               className="auth-link"
-  //               onClick={() => history.push('signup')}
-  //             >
-  //               Sign Up!
-  //             </span>
-  //           </div>
-  //
-  //           <button type="submit" disabled={!isValid || isSubmitting}>
-  //             Login
-  //           </button>
-  //         </Form>
-  //       )}
-  //     </Formik>
-  //
-  //     {!!serverError && <div className="error">{serverError}</div>}
-  //     </div>
-  //   </div>
-  // );
 };
