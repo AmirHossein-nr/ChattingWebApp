@@ -23,7 +23,7 @@ export const App = () => {
         <Switch>
           <Route path="/" exact component={Chat} />
           <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/register" component={Signup} />
         </Switch>
       </div>
     </ChatProvider>
