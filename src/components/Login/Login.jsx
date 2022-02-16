@@ -21,15 +21,27 @@ export const Login = () => {
           setServerError(
             'We\'re having trouble logging you in. Please try again.',
           );
+          setTimeout(() => {
+            setServerError('');
+          }, 3000);
         }
       })
       .catch(err => {
         if (err.code === 'auth/wrong-password') {
           setServerError('Invalid Auth Credits !');
+          setTimeout(() => {
+            setServerError('');
+          }, 3000);
         } else if (err.code === 'auth/user-not-found') {
           setServerError('No account With this Email');
+          setTimeout(() => {
+            setServerError('');
+          }, 3000);
         } else {
           setServerError('Something went wrong :(');
+          setTimeout(() => {
+            setServerError('');
+          }, 3000);
         }
       })
       .finally(() => setSubmitting(false));
@@ -40,8 +52,8 @@ export const Login = () => {
 
 
     <div className={'wrapper'}>
-      {!!serverError && <div className='error'>{serverError}</div>}
       <div className={'form'}>
+        {!!serverError && <h2 className='error'>{serverError}</h2>}
         <h1 className={'title'}>Web Chat Application</h1>
         <Formik
           onSubmit={login}
@@ -54,18 +66,14 @@ export const Login = () => {
             setBtnState(active ? 'button' : 'button disabled');
             return (<form>
               <ErrorMessage name='email' component='h2' className={'error'} />
-              <Field name='email' label='Email' type='email' value={username}
-                     onChange={(e) => setUsername(e.target.value)}
+              <Field name='email' label='Email' type='email'
                      placeholder={'Email'}
                      className={'input'}
-                     required
               />
               <ErrorMessage name='password' component='h2' className={'error'} />
               <Field name='password' label='Password' type='password'
-                     value={password} onChange={(e) => setPassword(e.target.value)}
                      placeholder={'Password'}
                      className={'input'}
-                     required
               />
               <div align={'center'}>
                 <button type={'submit'} className={btnState
@@ -79,9 +87,6 @@ export const Login = () => {
                                 Register
                             </span>
                 </button>
-                {/*<button type='button' className='button' onClick={() => {*/}
-                {/*}} style={{ justifyContent: 'center', alignItems: 'center' }}>*/}
-                {/*</button>*/}
               </div>
             </form>);
           }}
