@@ -23,8 +23,6 @@ export const Login = () => {
   });
 
   const login =  ({email,password}, { setSubmitting }) => {
-
-    console.log(email, password);
     fb.auth
       .signInWithEmailAndPassword(email, password)
       .then(res => {
