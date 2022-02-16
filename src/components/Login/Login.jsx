@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ErrorMessage, Form, Formik, Field } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { FormField } from 'components/FormField/FormField';
-import { validationSchema, defaultValues } from './formikConfig';
+import * as Yup from 'yup';
 
 export const Login = () => {
   const history = useHistory();
@@ -13,7 +13,18 @@ export const Login = () => {
   const [error, setError] = useState('');
   const [active, setActive] = useState(false);
   const [btnState, setBtnState] = useState('button');
-  const login = ({ email, password }, { setSubmitting }) => {
+  const defaultValues = {
+    email: '',
+    password: '',
+  };
+   const validationSchema = Yup.object().shape({
+    email: Yup.string().required('Required'),
+    password: Yup.string().required('Required'),
+  });
+
+  const login =  ({email,password}, { setSubmitting }) => {
+
+    console.log(email, password);
     fb.auth
       .signInWithEmailAndPassword(email, password)
       .then(res => {
@@ -49,8 +60,6 @@ export const Login = () => {
 
 
   return (
-
-
     <div className={'wrapper'}>
       <div className={'form'}>
         {!!serverError && <h2 className='error'>{serverError}</h2>}
@@ -64,7 +73,7 @@ export const Login = () => {
           {({ isValid, isSubmitting }) => {
             setActive(isValid && !isSubmitting);
             setBtnState(active ? 'button' : 'button disabled');
-            return (<form>
+            return (<Form>
               <ErrorMessage name='email' component='h2' className={'error'} />
               <Field name='email' label='Email' type='email'
                      placeholder={'Email'}
@@ -88,7 +97,7 @@ export const Login = () => {
                             </span>
                 </button>
               </div>
-            </form>);
+            </Form>);
           }}
         </Formik>
       </div>
