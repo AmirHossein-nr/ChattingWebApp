@@ -837,8 +837,8 @@ button[disabled] span:hover{
   transition-delay: 350ms;
   opacity: 1;
 }
-.thiss{
-  background-color: #fff !important;
+.modal.ui.modal{
+  border: 10px #fff;
 }
 .toggle--label {
   /** Placeholder element, starting at blue **/

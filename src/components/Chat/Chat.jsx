@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useChat } from 'context';
 import { getChats, ChatEngine } from 'react-chat-engine';
 import { LeftRail, ChatToolbar, ChatInput, MessageList } from 'components';
@@ -12,7 +12,7 @@ export const Chat = () => {
     setSelectedChat,
   } = useChat();
   const [darkMode, setDarkMode] = useState(false);
-  const time =new Date();
+  const time =useMemo(()=>new Date(),[]);
   useEffect(() => {
     console.log('My Chats: ', myChats);
   }, [myChats]);
@@ -20,15 +20,15 @@ export const Chat = () => {
   useEffect(() => {
     console.log('Selected Chat: ', selectedChat);
   }, [selectedChat]);
-
   useEffect(() =>{
-    if(time.toLocaleTimeString().valueOf() >= "7:00:00 PM"){
+    if(time.toLocaleTimeString().valueOf() >= "7:00:00 PM"
+    || time.toLocaleTimeString().valueOf() <= "5:00:00 AM"){
       setDarkMode(true)
     }
     else{
       setDarkMode(false)
     }
-  }, []);
+  }, [time]);
 
 
   return (
