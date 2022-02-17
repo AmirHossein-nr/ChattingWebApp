@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useChat } from 'context';
 import { getChats, ChatEngine } from 'react-chat-engine';
 import { LeftRail, ChatToolbar, ChatInput, MessageList } from 'components';
-import { Button, Header, Image, Modal } from 'semantic-ui-react';
-
 export const Chat = () => {
   const {
     myChats,
@@ -13,7 +11,6 @@ export const Chat = () => {
     selectChatClick,
     setSelectedChat,
   } = useChat();
-  const [open, setOpen] = React.useState(false)
   useEffect(() => {
     console.log('My Chats: ', myChats);
   }, [myChats]);
@@ -22,6 +19,7 @@ export const Chat = () => {
     console.log('Selected Chat: ', selectedChat);
   }, [selectedChat]);
 
+  const [darkMode, setDarkMode] = useState(false);
   return (
     <>
       {!!chatConfig && (
@@ -66,9 +64,9 @@ export const Chat = () => {
           }}
         />
       )}
-      <div className="chat-container">
-        <LeftRail />
-        <div className="current-chat">
+      <div className={`chat-container`}>
+        <LeftRail sdm={setDarkMode} dm={darkMode} />
+        <div className={`current-chat  ${darkMode && "dark-mode"}`}>
           {selectedChat ? (
             <div className="chat">
               <ChatToolbar />

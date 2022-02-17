@@ -6,7 +6,7 @@ import { ImageUpload } from 'components';
 import { Icon, IconGroup, Image, Loader} from 'semantic-ui-react';
 import Setting from '../Setting/Setting';
 
-export const RailHeader = () => {
+export const RailHeader = (props) => {
   const { chatConfig } = useChat();
   const configResolved = useResolved(chatConfig);
   const inputRef = useRef(null);
@@ -95,7 +95,7 @@ export const RailHeader = () => {
             <Loader active size="small" />
           </div>
         )}
-        <Setting />
+        <Setting dm={props.dm} sdm={props.sdm}/>
       </div>
     </>
   );

@@ -4,13 +4,13 @@ import { ChatList } from 'components';
 import { RailHeader } from 'components';
 import { Loader } from 'semantic-ui-react';
 
-export const LeftRail = () => {
+export const LeftRail = (props) => {
   const { myChats, createChatClick } = useChat();
   const chatsResolved = useResolved(myChats);
 
   return (
     <div className="left-rail">
-      <RailHeader />
+      <RailHeader sdm={props.sdm} dm={props.dm}/>
       {chatsResolved ? (
         <>
           {!!myChats.length ? (

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react';
 
-function Setting() {
+function Setting(props) {
   const [open, setOpen] = React.useState(false);
-
   return (
     <Modal
       onClose={() => setOpen(false)}
@@ -21,7 +20,12 @@ function Setting() {
             change the setting of the app
           </p>
         </Modal.Description>
-
+        <Button color='black' onClick={() =>{
+          if(props.dm) props.sdm(false)
+          else props.sdm(true)
+        } }>
+          Dark Mode
+        </Button>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
