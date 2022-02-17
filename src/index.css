@@ -191,6 +191,10 @@ code {
 .chats-loading {
   height: 100%;
   position: relative;
+
+}
+.loading-blue{
+  background-color: #43afe8;
 }
 .left-rail-header {
   height: 100px;
@@ -832,6 +836,9 @@ button[disabled] span:hover{
 .toggle--checkbox:checked + .toggle--label:after {
   transition-delay: 350ms;
   opacity: 1;
+}
+.this{
+  background-color: #fff !important;
 }
 .toggle--label {
   /** Placeholder element, starting at blue **/

@@ -11,6 +11,8 @@ export const Chat = () => {
     selectChatClick,
     setSelectedChat,
   } = useChat();
+  const [darkMode, setDarkMode] = useState(false);
+  const time =new Date();
   useEffect(() => {
     console.log('My Chats: ', myChats);
   }, [myChats]);
@@ -19,7 +21,16 @@ export const Chat = () => {
     console.log('Selected Chat: ', selectedChat);
   }, [selectedChat]);
 
-  const [darkMode, setDarkMode] = useState(false);
+  useEffect(() =>{
+    if(time.toLocaleTimeString().valueOf() >= "7:00:00 PM"){
+      setDarkMode(true)
+    }
+    else{
+      setDarkMode(false)
+    }
+  }, []);
+
+
   return (
     <>
       {!!chatConfig && (

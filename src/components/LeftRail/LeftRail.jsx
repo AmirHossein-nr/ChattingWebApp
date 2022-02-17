@@ -14,11 +14,11 @@ export const LeftRail = (props) => {
       {chatsResolved ? (
         <>
           {!!myChats.length ? (
-            <div className="chat-list-container">
+            <div className={`chat-list-container ${!props.dm && "loading-blue"}`}>
               <ChatList />
             </div>
           ) : (
-            <div className="chat-list-container no-chats-yet">
+            <div className={`chat-list-container no-chats-yet ${!props.dm && "loading-blue"}`}>
               <h3>No Chats Yet</h3>
             </div>
           )}
@@ -27,7 +27,7 @@ export const LeftRail = (props) => {
           </button>
         </>
       ) : (
-        <div className="chats-loading">
+        <div className={`chats-loading ${!props.dm && "loading-blue"}`}>
           <Loader active size="huge" />
         </div>
       )}
