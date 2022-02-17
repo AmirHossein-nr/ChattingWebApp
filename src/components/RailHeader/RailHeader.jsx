@@ -3,7 +3,8 @@ import { useChat } from 'context';
 import { useResolved } from 'hooks';
 import { useRef, useState } from 'react';
 import { ImageUpload } from 'components';
-import { Icon, IconGroup, Image, Loader } from 'semantic-ui-react';
+import { Icon, IconGroup, Image, Loader} from 'semantic-ui-react';
+import Setting from '../Setting/Setting';
 
 export const RailHeader = () => {
   const { chatConfig } = useChat();
@@ -94,6 +95,7 @@ export const RailHeader = () => {
             <Loader active size="small" />
           </div>
         )}
+        <Setting />
       </div>
     </>
   );

@@ -8,7 +8,7 @@ export const Login = () => {
   const history = useHistory();
   const [serverError, setServerError] = useState('');
   const [active, setActive] = useState(false);
-  const [btnState, setBtnState] = useState('button');
+  const [btnState, setBtnState] = useState('buttonl');
   const [visible, setVisible] = useState(false);
   const defaultValues = {
     email: '',
@@ -87,7 +87,7 @@ export const Login = () => {
         >
           {({ isValid, isSubmitting }) => {
             setActive(isValid && !isSubmitting);
-            setBtnState(active ? 'button' : 'button disabled');
+            setBtnState(active ? 'buttonl' : 'buttonl disabled');
             return (<Form>
               <ErrorMessage name='email' component='h2' className={'error'} />
               <Field name='email' label='Email' type='email'
@@ -104,7 +104,7 @@ export const Login = () => {
                 } disabled={!active}>
                   <span>Start Chatting</span>
                 </button>
-                <button type={'button'} className={'button'} onClick={() => {
+                <button type={'button'} className={'buttonl'} onClick={() => {
                   history.push('/register');
                 }}>
                             <span>

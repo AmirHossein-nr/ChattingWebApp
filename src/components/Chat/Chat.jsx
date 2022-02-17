@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useChat } from 'context';
 import { getChats, ChatEngine } from 'react-chat-engine';
 import { LeftRail, ChatToolbar, ChatInput, MessageList } from 'components';
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
 
 export const Chat = () => {
   const {
@@ -12,7 +13,7 @@ export const Chat = () => {
     selectChatClick,
     setSelectedChat,
   } = useChat();
-
+  const [open, setOpen] = React.useState(false)
   useEffect(() => {
     console.log('My Chats: ', myChats);
   }, [myChats]);
@@ -65,7 +66,6 @@ export const Chat = () => {
           }}
         />
       )}
-
       <div className="chat-container">
         <LeftRail />
         <div className="current-chat">

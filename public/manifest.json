@@ -1,6 +1,6 @@
 {
-  "short_name": "PortEXE Chat Tutorial",
-  "name": "Building a complete chat application with React and Chatengine.io",
+  "short_name": "Web Chat App",
+  "name": "Complete chat application with React and Chatengine.io",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
