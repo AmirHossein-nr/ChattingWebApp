@@ -10,7 +10,7 @@ export const LeftRail = (props) => {
 
   return (
     <div className="left-rail">
-      <RailHeader sdm={props.sdm} dm={props.dm}/>
+      <RailHeader sdm={props.sdm} dm={props.dm} start={props.setStart} end={props.setEnd}/>
       {chatsResolved ? (
         <>
           {!!myChats.length ? (

@@ -95,7 +95,7 @@ export const RailHeader = (props) => {
             <Loader active size="small" />
           </div>
         )}
-        <Setting dm={props.dm} sdm={props.sdm}/>
+        <Setting dm={props.dm} sdm={props.sdm} start={props.setStart} end={props.setEnd}/>
       </div>
     </>
   );

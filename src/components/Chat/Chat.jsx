@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useChat } from 'context';
 import { getChats, ChatEngine } from 'react-chat-engine';
 import { LeftRail, ChatToolbar, ChatInput, MessageList } from 'components';
+
 export const Chat = () => {
   const {
     myChats,
@@ -12,23 +13,23 @@ export const Chat = () => {
     setSelectedChat,
   } = useChat();
   const [darkMode, setDarkMode] = useState(false);
-  const time =useMemo(()=>new Date(),[]);
+  const [startTime, setStart] = useState(19);
+  const [endTime, setEnd] = useState(6);
+  const time = useMemo(() => new Date(), []);
   useEffect(() => {
     console.log('My Chats: ', myChats);
   }, [myChats]);
-
   useEffect(() => {
     console.log('Selected Chat: ', selectedChat);
   }, [selectedChat]);
-  useEffect(() =>{
-    if(time.toLocaleTimeString().valueOf() >= "7:00:00 PM"
-    || time.toLocaleTimeString().valueOf() <= "5:00:00 AM"){
-      setDarkMode(true)
+  useEffect(() => {
+    if (time.getHours() >= startTime
+      || time.getHours() <= endTime ) {
+      setDarkMode(true);
+    } else {
+      setDarkMode(false);
     }
-    else{
-      setDarkMode(false)
-    }
-  }, [time]);
+  }, [time, startTime, endTime]);
 
 
   return (
@@ -76,20 +77,20 @@ export const Chat = () => {
         />
       )}
       <div className={`chat-container`}>
-        <LeftRail sdm={setDarkMode} dm={darkMode} />
-        <div className={`current-chat  ${darkMode && "dark-mode"}`}>
+        <LeftRail sdm={setDarkMode} dm={darkMode} start={setStart} end={setEnd} />
+        <div className={`current-chat  ${darkMode && 'dark-mode'}`}>
           {selectedChat ? (
-            <div className="chat">
+            <div className='chat'>
               <ChatToolbar />
               <MessageList />
               <ChatInput />
             </div>
           ) : (
-            <div className="no-chat-selected">
+            <div className='no-chat-selected'>
               <img
-                src="/img/pointLeft.png"
-                className="point-left"
-                alt="point-left"
+                src='/img/pointLeft.png'
+                className='point-left'
+                alt='point-left'
               />
               Select A Chat
             </div>

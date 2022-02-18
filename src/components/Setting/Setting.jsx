@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
-import TimePicker from 'react-time-picker';
 function Setting(props) {
   const [open, setOpen] = React.useState(false);
+  const [st,setSt] = React.useState(undefined);
+  const [ed,setEd] = React.useState(undefined);
   const [secondOpen, setSecondOpen] = React.useState(false);
-  const [value, onChange] = useState('10:00');
-  // const [secondTime, setSecondTime] = React.useState("00:00:00");
+  const [changed,setChanged] = React.useState(false);
+
   return (
     <>
       <Modal
@@ -27,6 +28,7 @@ function Setting(props) {
             </p>
           </Modal.Description>
           <br />
+
           <Button style={{ border: `1px ${props.dm ? '#000' : '#fff'} solid` }}
                   color={props.dm ? 'white' : 'black'} onClick={() => {
             if (props.dm) props.sdm(false);
@@ -63,35 +65,42 @@ function Setting(props) {
         <Modal.Content style={{ color: 'white' }}>
           <p style={{ color: 'white' }}>set the time of dark mode</p>
           <br />
-          {/*<input*/}
-          {/*  className={'time-input'}*/}
-          {/*  type={'time'}*/}
-          {/*  placeholder={'Time'}*/}
-          {/*  onChange={(e) => {*/}
-          {/*    console.log(e.target.value);*/}
-          {/*  }}*/}
-
-          {/*/>*/}
-          <TimePicker
-            format={"HH:mm:ss"}
-            className={'time-input'}
-            onChange={onChange}
-            value={value} />
+          dark mode from
+          <input className={"input-num"} type='number'
+                 max={24} min={0} placeholder={"start"} required
+                 onChange={(e)=> {
+                   setEd(parseInt(e.target.value));
+                   setChanged(st!==undefined && ed!==undefined && st!==null && ed!==null);
+                 }} />
+          to
+          <input type='number' className={"input-num"}
+                 max={24} min={0} placeholder={"end"} required={true}
+                 onChange={(e)=> {
+                   setSt(parseInt(e.target.value));
+                   setChanged(st!==undefined && ed!==undefined && st!==null && ed!==null);
+                 }} />
           &nbsp;
         </Modal.Content>
         <Modal.Actions>
           <Button
+            disabled ={!changed}
             icon='check'
             content='save'
             onClick={() => {
-              setSecondOpen(false);
+              console.log("st:",st,"ed:",ed,typeof(st),typeof(ed));
+                // props.end(ed)
+                // props.start(st)
+                setSecondOpen(true);
             }}
           />
           <Button
             color={'red'}
             icon='close icon'
             content='close'
-            onClick={() => setSecondOpen(false)}
+            onClick={() => {
+
+              setSecondOpen(false);
+            }}
           />
         </Modal.Actions>
       </Modal>

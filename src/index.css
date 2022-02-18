@@ -845,6 +845,25 @@ button[disabled] span:hover{
   border:none;
   color:#fff
 }
+.input-num{
+  background-color: transparent;
+  border:none;
+  color:#fff;
+  text-align: center;
+  border-bottom:1px solid #fff;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
+}
+.input-num:focus{
+  outline: none;
+}
 
 .time-input:focus{
   outline:none;
