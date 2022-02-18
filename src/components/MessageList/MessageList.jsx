@@ -24,14 +24,9 @@ export const MessageList = (props) => {
             <div className="message-content">
               {m.map((individualMessage, index) => (
                 <div key={index}>
-                  <div className="bubble-container">
-                    <div className="bubble" >
-                      <div className={`message-text ${!props.darkMode && 'dm'}`}>
-                        {individualMessage.text}
-                      </div>
-                    </div>
+                  <div className={`message-text ${!props.darkMode && 'dm'}`}>
+                    {individualMessage.text}
                   </div>
-
                   {!!individualMessage.attachments.length && (
                     <img
                       className="message-image"
