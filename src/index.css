@@ -346,6 +346,9 @@ code {
   font-size: 14px;
   margin-bottom: 10px;
 }
+.dm{
+  color:#1f2026;
+}
 .chat-controls {
   width: 100%;
   margin: 25px;

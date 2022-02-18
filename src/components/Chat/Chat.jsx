@@ -82,7 +82,7 @@ export const Chat = () => {
           {selectedChat ? (
             <div className='chat'>
               <ChatToolbar />
-              <MessageList />
+              <MessageList darkMode={darkMode} />
               <ChatInput />
             </div>
           ) : (

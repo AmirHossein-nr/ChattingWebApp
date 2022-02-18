@@ -3,7 +3,7 @@ import { ChatAvatar } from 'components';
 import { groupMessages } from 'helpers';
 import { useScrollToBottom } from 'hooks';
 
-export const MessageList = () => {
+export const MessageList = (props) => {
   const { selectedChat } = useChat();
   useScrollToBottom(selectedChat, 'chat-messages');
 
@@ -24,7 +24,7 @@ export const MessageList = () => {
             <div className="message-content">
               {m.map((individualMessage, index) => (
                 <div key={index}>
-                  <div className="message-text">{individualMessage.text}</div>
+                  <div className={`message-text ${props.darkMode && 'dm'}`}>{individualMessage.text}</div>
 
                   {!!individualMessage.attachments.length && (
                     <img
