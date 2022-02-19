@@ -4,7 +4,7 @@ import { groupMessages } from 'helpers';
 import { useScrollToBottom } from 'hooks';
 
 export const MessageList = (props) => {
-  const { selectedChat,chatConfig } = useChat();
+  const { selectedChat, chatConfig } = useChat();
   useScrollToBottom(selectedChat, 'chat-messages');
   const myUsername = chatConfig.userName;
   // let prevAuthor = ''
@@ -13,7 +13,7 @@ export const MessageList = (props) => {
       {!!selectedChat.messages.length ? (
         groupMessages(selectedChat.messages).map((m, index) => (
           <div key={index} className='chat-message '>
-            <div className={`chat-message-header ${myUsername===m[0].sender.username && 'mine-container'}`}>
+            <div className={`chat-message-header ${myUsername === m[0].sender.username && 'mine-container'}`}>
               <ChatAvatar
                 className='message-avatar'
                 username={m[0].sender.username}
@@ -22,24 +22,26 @@ export const MessageList = (props) => {
               <div className={`message-author ${!props.darkMode && 'dm'}`}>{m[0].sender.username}</div>
             </div>
 
-            <div className={`message-content `}>
+            <div className={`message-content ${myUsername === m[0].sender.username && 'mine-container'}`}>
               {m.map((individualMessage, index) => (
-                <div key={index} className={`${!individualMessage.attachments.length && 'bubble-container' }
-                ${myUsername===m[0].sender.username && 'mine-container'}`}>
+                <div key={index} className={`${!individualMessage.attachments.length && 'bubble-container'}
+                ${myUsername === m[0].sender.username && 'mine-container'}`}>
                   <div
-                    className={`${!individualMessage.attachments.length &&'bubble'} ${myUsername===m[0].sender.username && 'mine'}`}>
+                    className={`${!individualMessage.attachments.length && 'bubble'} ${myUsername === m[0].sender.username && 'mine'}`}>
                     <div
-                      className={`message-text ${myUsername!==m[0].sender.username && 'dm'}`}>
+                      className={`message-text ${myUsername !== m[0].sender.username && 'dm'}`}>
                       {individualMessage.text}
                     </div>
                   </div>
                   {!!individualMessage.attachments.length && (
                     <img
-                      className='message-image'
+                      className={`message-image ${myUsername === m[0].sender.username && 'mine-img'}`}
                       src={individualMessage.attachments[0].file}
                       alt={individualMessage.id + '-attachment'}
                     />
+
                   )}
+                  <br clear='all' />
                 </div>
               ))}
             </div>

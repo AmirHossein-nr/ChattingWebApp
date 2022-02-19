@@ -320,6 +320,9 @@ code {
 .message-image {
   width: 250px;
 }
+.mine-img{
+  float: right;
+}
 .message-avatar {
   width: 35px;
   height: 35px;
