@@ -12,7 +12,6 @@ export const ChatList = () => {
     selectChatClick,
     deleteChatClick,
   } = useChat();
-
   return (
     <div className="chat-list">
       {myChats.map((c, index) => (

@@ -4,32 +4,34 @@ import { groupMessages } from 'helpers';
 import { useScrollToBottom } from 'hooks';
 
 export const MessageList = (props) => {
-  const { selectedChat } = useChat();
+  const { selectedChat,chatConfig } = useChat();
   useScrollToBottom(selectedChat, 'chat-messages');
-
+  const myUsername = chatConfig.userName;
   return (
-    <div className="chat-messages">
+    <div className='chat-messages'>
       {!!selectedChat.messages.length ? (
         groupMessages(selectedChat.messages).map((m, index) => (
-          <div key={index} className="chat-message">
-            <div className="chat-message-header">
+          <div key={index} className='chat-message '>
+            <div className={`chat-message-header ${myUsername===m[0].sender.username && 'mine-container'}`}>
               <ChatAvatar
-                className="message-avatar"
+                className='message-avatar'
                 username={m[0].sender.username}
                 chat={selectedChat}
               />
-              <div className="message-author">{m[0].sender.username}</div>
+              <div className={`message-author ${!props.darkMode && 'dm'}`}>{m[0].sender.username}</div>
             </div>
 
-            <div className="message-content">
+            <div className={`message-content `}>
               {m.map((individualMessage, index) => (
-                <div key={index}>
-                  <div className={`message-text ${!props.darkMode && 'dm'}`}>
-                    {individualMessage.text}
+                <div key={index} className={`bubble-container ${myUsername===m[0].sender.username && 'mine-container'}`}>
+                  <div className={`bubble ${myUsername===m[0].sender.username && 'mine'}`}>
+                    <div className={`message-text ${myUsername!==m[0].sender.username && 'dm'}`}>
+                      {individualMessage.text}
+                    </div>
                   </div>
                   {!!individualMessage.attachments.length && (
                     <img
-                      className="message-image"
+                      className='message-image'
                       src={individualMessage.attachments[0].file}
                       alt={individualMessage.id + '-attachment'}
                     />
@@ -40,7 +42,7 @@ export const MessageList = (props) => {
           </div>
         ))
       ) : (
-        <div className="no-messages-yet">No messages yet</div>
+        <div className='no-messages-yet'>No messages yet</div>
       )}
     </div>
   );
