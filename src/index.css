@@ -364,7 +364,7 @@ code {
   justify-content: flex-end;
 }
 
-.message-start{
+.message-start {
   /* margin-top: 10px; */
   border-top-left-radius: 20px;
   /*flex-shrink: 0;*/
@@ -377,7 +377,7 @@ code {
   /* margin-bottom: 10px; */
 }
 
-.message-start{
+.message-start-mine{
   margin-top: 10px;
   border-top-right-radius: 20px;
 }

@@ -7,6 +7,7 @@ export const MessageList = (props) => {
   const { selectedChat,chatConfig } = useChat();
   useScrollToBottom(selectedChat, 'chat-messages');
   const myUsername = chatConfig.userName;
+  // let prevAuthor = ''
   return (
     <div className='chat-messages'>
       {!!selectedChat.messages.length ? (
@@ -23,9 +24,12 @@ export const MessageList = (props) => {
 
             <div className={`message-content `}>
               {m.map((individualMessage, index) => (
-                <div key={index} className={`bubble-container ${myUsername===m[0].sender.username && 'mine-container'}`}>
-                  <div className={`bubble ${myUsername===m[0].sender.username && 'mine'}`}>
-                    <div className={`message-text ${myUsername!==m[0].sender.username && 'dm'}`}>
+                <div key={index} className={`${!individualMessage.attachments.length && 'bubble-container' }
+                ${myUsername===m[0].sender.username && 'mine-container'}`}>
+                  <div
+                    className={`${!individualMessage.attachments.length &&'bubble'} ${myUsername===m[0].sender.username && 'mine'}`}>
+                    <div
+                      className={`message-text ${myUsername!==m[0].sender.username && 'dm'}`}>
                       {individualMessage.text}
                     </div>
                   </div>
